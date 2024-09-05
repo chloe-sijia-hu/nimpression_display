@@ -127,4 +127,4 @@ frontend
 
 ```
 ## Project Links
-- GitHub: https://github.com/LUMasterOfAppliedComputing2024S1/COMP639S1_Project_2_Group_I](https://github.com/Sijia-Hu-1158997/nimpression
+- GitHub: https://github.com/Sijia-Hu-1158997/nimpression
