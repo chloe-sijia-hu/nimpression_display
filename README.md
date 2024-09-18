@@ -1,6 +1,8 @@
 # Nimpression - Company Website
 ## Description
-This repository showcases part of my current internship project, a full-stack web application for Nimpression Ltd., a logistics company. The app enables customers to learn about the company, obtain quotes, and track deliveries. It also assists managers in managing trucks and communicating with customers.
+This repository showcases part of my current internship project: a full-stack web application for Nimpression Ltd., a logistics company. The app allows customers to learn about the company, obtain quotes, and track deliveries. It also helps managers manage trucks and communicate with customers.
+
+The web app employs modular coding practices to make the code more reusable. It integrates the Google Places API for address autocomplete, and I am currently working on integrating the Distance Matrix API to calculate booking prices.
 
 ## Key Features (so far)
 ### 1. User-Friendly Homepage:
@@ -23,9 +25,11 @@ Multi-steps register with comprehensive validation.
 ![User](img/register.png)
 ![User](img/login.png)
 
-### 4. Getting Quotes and Make a booking: 
-![Booking](img/booking.png)
+### 4. Getting Quotes and Make a booking with API Integration: 
+![Booking](img/booking1.png)
+![Booking](img/booking2.png)
 Staff can manage the quotes they receieve and respond to them.
+Use Places API to autocomplete address.
 
 ### 5. Messaging System: 
 Enables communication between customers and staff/manager.
