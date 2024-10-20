@@ -1,0 +1,161 @@
+# check web for more info https://docs.docker.com/reference/compose-file/services/
+
+version: "3"
+
+services:
+# create container/service
+  frontend:
+    # image specifies the image to start the container from.
+    image: frontend-image
+    # build: defines how to create the Docker image for the service. 
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      # - NODE_ENV=development
+      - NODE_ENV=production
+      - VITE_API_URL=${API_URL}/api
+      - VITE_ADMIN_URL=${ADMIN_URL}
+    ports:
+      - "5173:5173"  
+      # All requests on port 5173 of the host machine (the system from where you’re running Docker Compose) 
+      # will be redirected to the web container on port 3000, which is where Nginx will be running
+      # Exposing frontend port
+    # The volumes attribute define mount host paths or named volumes that are accessible by service containers. 
+    # If the mount is a host path and is only used by a single service, it can be declared as part of the service definition. 
+    # To reuse a volume across multiple services, a named volume must be declared in the volumes top-level element.
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    # depends_on: control the order of service startup and shutdown
+    depends_on:
+      - backend
+    #  restart defines the policy that the platform applies on container termination.
+    #  always: The policy always restarts the container until its removal.
+    restart: always
+    # The networks attribute defines the networks that service containers are attached to, 
+    # referencing entries under the networks top-level element. 
+    # The networks attribute helps manage the networking aspects of containers, 
+    # providing control over how services are segmented and interact within the Docker environment. 
+    # This is used to specify which networks the containers for that service should connect to. 
+    # This is important for defining how containers communicate with each other and externally.
+    networks:
+      react-express:
+        aliases:
+          - frontend
+    links:
+      - backend
+    env_file:
+      - ./frontend/.env # For non-sensitive variables
+      - ./.env
+
+  admin:
+    image: admin-image
+    restart: always
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    environment:
+      # - NODE_ENV=development
+      - NODE_ENV=production
+      - VITE_API_URL=${API_URL}/api
+      - VITE_FRONTEND_URL=${FRONTEND_URL}
+    ports:
+      - "5174:5174"  # Exposing admin port
+    volumes:
+      - ./admin:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - backend
+    networks:
+      react-express:
+        aliases:
+          - admin
+    links:
+      - backend
+    env_file:
+      - ./admin/.env 
+
+  backend:
+    image: backend-image
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
+      - VITE_ADMIN_URL=${ADMIN_URL}
+      - VITE_FRONTEND_URL=${FRONTEND_URL}
+    expose:
+      - "4000"
+    ports:
+      - "4000:4000"  # Exposing backend port
+    secrets:
+      - GOOGLE_MAPS_API_KEY
+      - DATABASE_URL
+      - JWT_SECRET
+      - PORT
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+      - ./backend/upload:/usr/src/app/upload/images  # Mounting the upload directory
+    # The environment attribute defines environment variables set in the container. 
+    # environment:
+    #   - NODE_ENV=development
+    depends_on:
+      - mongo
+    networks:
+      express-mongo: {}
+      react-express:
+        aliases:
+          - backend
+    links:
+      - mongo
+    env_file:
+      - ./backend/.env 
+      - ./.env
+
+  mongo:
+    image: mongo:4.2.0
+    ports:
+      - "27017:27017"  # Exposing MongoDB port
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - express-mongo
+  
+  nginx:
+    build:
+      context: ./nginx-config
+      dockerfile: Dockerfile
+    ports:
+      # - "8081:80"
+      - "80:80"
+    depends_on:
+      - frontend
+      - admin
+      - backend
+    volumes:
+      - ./nginx-config/nginx.conf:/etc/nginx/nginx.conf  
+      - ./nginx-config/sites-enabled:/etc/nginx/sites-enabled
+      - ./backend/upload:/usr/src/app/upload/images 
+    networks:
+      - react-express
+
+networks:
+  react-express:
+  express-mongo:
+
+secrets:
+  DATABASE_URL:
+    file: ./backend/secrets/DATABASE_URL.txt
+  GOOGLE_MAPS_API_KEY:
+    file: ./backend/secrets/GOOGLE_MAPS_API_KEY.txt
+  JWT_SECRET:
+    file: ./backend/secrets/JWT_SECRET.txt
+  PORT:
+    file: ./backend/secrets/PORT.txt
+
+volumes:
+  mongo_data:

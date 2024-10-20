@@ -4,62 +4,54 @@ This repository showcases part of my current internship project: a full-stack we
 
 The web app employs modular coding practices to make the code more reusable. It integrates the Google Places API for address autocomplete, and I am currently working on integrating the Distance Matrix API to calculate booking prices.
 
-## Key Features (so far)
-### 1. User-Friendly Homepage:
-![Home](img/home1.png)
-![Home](img/home2.png)
-![Home](img/home3.png)
-![Home](img/home4.png)
-![Home](img/about.png)
-![Home](img/trucks.png)
-![Home](img/single_truck.png)
+## Key Features:
+### 1. User-Friendly Homepage that adapts to different screen sizes:
+![Home](img/home_hero.png)
+![Home](img/home_small.png)
+![Home](img/home_popular.png)
+![Home](img/home_footer.png)
 
 ### 2. Manager Dashboard:
-Custom dashboards for each user role with tailored functionality.
-![Dashboard](img/truck_list.png)
-![Dashboard](img/add_truck.png)
-![Dashboard](img/edit_truck.png)
+Custom dashboard for admin with tailored functionality.
+![Dashboard](img/admin_dashboard.png)
+![Dashboard](img/admin_small.png)
 
-### 3. Login/Register:
-Multi-steps register with comprehensive validation.
-![User](img/register.png)
-![User](img/login.png)
+### 3. Getting Quotes and Make a booking with API Integration:
+(Use Places API to autocomplete address and Distance Matrix API for calculating booking fee.)
+![Booking](img/booking_1.png)
+![Booking](img/booking_2.png)
+For admin, there are comprehensive filter for searching. 
+![Booking](img/admin_booking.png)
+![Booking](img/admin_booking_edit.png)
+For customer to manage their booking:
+![Booking](img/cart.png)
 
-### 4. Getting Quotes and Make a booking with API Integration: 
-![Booking](img/booking1.png)
-![Booking](img/booking2.png)
-Staff can manage the quotes they receieve and respond to them.
-Use Places API to autocomplete address.
+### 4. Subscription:
+Easy subscription management for admin. A button to copy all emails addresses in bulk for mass communication (e.g., in "email1; email2" format)
+![Email](img/home_email.png)
+![Email](img/admin_email.png)
 
-### 5. Messaging System: 
-Enables communication between customers and staff/manager.
-![Contact](img/contact.png)
+### 5. Role Access: 
+Secure access for admin function.
+![Access](img/admin_access.png)
 
-### 6. Track delivery:
-![Track](img/track.png)
+### 6. Cnotact: 
+Use FormCarry API to collect user queries and send to admin's email.
+![Access](img/contact.png)
 
 ## Project Layout
 ```bash
+-- docker-compose.yml
 admin
-   |-- .gitignore
-   |-- README.md
-   |-- eslint.config.js
+   |-- Dockerfile
    |-- index.html
-   |-- package-lock.json
-   |-- package.json
-   |-- postcss.config.js
-   |-- public
-   |   |-- logo.svg
    |-- src
    |   |-- App.jsx
-   |   |-- assets
-   |   |   |-- logo.svg
-   |   |   |-- profile.png
-   |   |   |-- react.svg
-   |   |   |-- upload_area.png
    |   |-- components
    |   |   |-- AddTruck.jsx
+   |   |   |-- EditBooking.jsx
    |   |   |-- EditTruck.jsx
+   |   |   |-- ListBooking.jsx
    |   |   |-- ListTruck.jsx
    |   |   |-- Navbar.jsx
    |   |   |-- Sidebar.jsx
@@ -67,36 +59,27 @@ admin
    |   |-- main.jsx
    |   |-- pages
    |   |   |-- Admin.jsx
-   |-- tailwind.config.js
-   |-- vite.config.js
 backend
+   |-- Dockerfile
    |-- index.js
-   |-- node_modules
-   |-- package-lock.json
-   |-- package.json
-   |-- upload
-   |   |-- images
+   |-- models
+   |   |-- Booking.js
+   |   |-- Truck.js
+   |   |-- User.js
+   |-- routes
+   |   |-- bookings.js
+   |   |-- places.js
+   |   |-- trucks.js
+   |   |-- users.js
 frontend
-   |-- .eslintrc.cjs
-   |-- .gitignore
-   |-- README.md
+   |-- Dockerfile
    |-- index.html
-   |-- package-lock.json
-   |-- package.json
-   |-- postcss.config.js
    |-- public
    |   |-- logo.svg
    |-- src
    |   |-- App.jsx
    |   |-- Context
    |   |   |-- CompanyContext.jsx
-   |   |-- assets
-   |   |   |-- all_products.js
-   |   |   |-- footer_contact.js
-   |   |   |-- footer_links.js
-   |   |   |-- logo.svg
-   |   |   |-- popular.js
-   |   |   |-- value.js
    |   |-- components
    |   |   |-- AboutUs.jsx
    |   |   |-- CartItems.jsx
@@ -118,7 +101,7 @@ frontend
    |   |-- main.jsx
    |   |-- pages
    |   |   |-- About.jsx
-   |   |   |-- Booking.jsx
+   |   |   |-- AddBooking.jsx
    |   |   |-- Cart.jsx
    |   |   |-- Contact.jsx
    |   |   |-- Home.jsx
@@ -126,9 +109,27 @@ frontend
    |   |   |-- Track.jsx
    |   |   |-- Truck.jsx
    |   |   |-- Vehicles.jsx
-   |-- tailwind.config.js
-   |-- vite.config.js
-
+nginx-config
+   |-- Dcokerfile
+   |-- nginx.conf
+   |-- wait-for-it.sh
+   |-- site_enabled
+   |   |-- nimpression.conf
 ```
 ## Project Links
 - GitHub: https://github.com/Sijia-Hu-1158997/nimpression
+
+## More Photos:
+### Home Page: 
+![Home](img/home_truck.png)
+![Home](img/home_single_truck.png)
+![Home](img/login.png)
+
+### Admin
+Manager users
+![Admin](img/admin_user.png)
+
+Manager trucks
+![Admin](img/admin_truck_list.png)
+![Admin](img/admin_edit_truck.png)
+![Admin](img/admin_add_truck.png)
