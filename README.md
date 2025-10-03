@@ -7,14 +7,13 @@ The web app employs modular coding practices to make the code more reusable. It 
 ## Design
 ![Diagramn](img/diagram.jpg)
 
-## Walk Through
-
-- <video src="https://github.com/user-attachments/assets/29faf057-43ec-48dd-ad25-04d2f134f094" width="352" height="720"></video>
-
-- Visitor view: https://github.com/user-attachments/assets/29faf057-43ec-48dd-ad25-04d2f134f094
-- Customer view: https://github.com/user-attachments/assets/49cf3ff9-7107-49be-8b60-85f906e30cfa
-- Admin view: https://github.com/user-attachments/assets/b2a9cc87-e410-4e7d-a181-2c277167466f
-
+## Walk Through Videos
+Visitor view
+<video src="https://github.com/user-attachments/assets/29faf057-43ec-48dd-ad25-04d2f134f094" width="352" height="720"></video>
+Customer view
+<video src="https://github.com/user-attachments/assets/49cf3ff9-7107-49be-8b60-85f906e30cfa" width="352" height="720"></video>
+Admin view
+<video src="https://github.com/user-attachments/assets/b2a9cc87-e410-4e7d-a181-2c277167466f" width="352" height="720"></video>
 
 ## Key Features:
 ### 1. Deployment:
@@ -152,7 +151,7 @@ Manager trucks
 ![Admin](img/admin_edit_truck.png)
 ![Admin](img/admin_add_truck.png)
 
-## Videos
+## Videos for download
 - Visitor view: https://github.com/user-attachments/assets/29faf057-43ec-48dd-ad25-04d2f134f094
 - Customer view: https://github.com/user-attachments/assets/49cf3ff9-7107-49be-8b60-85f906e30cfa
 - Admin view: https://github.com/user-attachments/assets/b2a9cc87-e410-4e7d-a181-2c277167466f
