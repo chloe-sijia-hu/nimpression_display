@@ -2,10 +2,14 @@
 ## Description
 This repository showcases part of my current internship project: a full-stack web application for Nimpression Ltd., a logistics company. The app allows customers to learn about the company, obtain quotes, and track deliveries. It also helps managers manage trucks and communicate with customers.
 
-The web app employs modular coding practices to make the code more reusable. It integrates the Google Places API for address autocomplete, and I am currently working on integrating the Distance Matrix API to calculate booking prices.
+The web app employs modular coding practices to make the code more reusable. It integrates the Google Places API for address autocomplete, and the Distance Matrix API to calculate booking prices.
 
 ## Design
 ![Diagramn](img/diagram.jpg)
+
+## Walk Through
+Admin view:
+https://github.com/user-attachments/assets/159c89e7-5cbf-4eb1-88ef-c785cc338e5d
 
 ## Key Features:
 ### 1. Deployment:
@@ -25,26 +29,26 @@ Custom dashboard for admin with tailored functionality.
 ![Dashboard](img/admin_dashboard.png)
 ![Dashboard](img/admin_small.png)
 
-### 4. Getting Quotes and Make a booking with API Integration:
+### 4. Getting Quotes and Making a booking with API Integration:
 (Use Places API to autocomplete address and Distance Matrix API for calculating booking fee.)
 ![Booking](img/booking_1.png)
 ![Booking](img/booking_2.png)
-For admin, there are comprehensive filter for searching. 
+For the admin, there are comprehensive filters for searching. 
 ![Booking](img/admin_booking.png)
 ![Booking](img/admin_booking_edit.png)
 For customer to manage their booking:
 ![Booking](img/cart.png)
 
 ### 5. Subscription:
-Easy subscription management for admin. A button to copy all emails addresses in bulk for mass communication (e.g., in "email1; email2" format)
+Easy subscription management for admin. A button to copy all the email addresses in bulk for mass communication (e.g., in "email1; email2" format)
 ![Email](img/home_email.png)
 ![Email](img/admin_email.png)
 
 ### 6. Role Access: 
-Secure access for admin function.
+Secure access for admin functions.
 ![Access](img/admin_access.png)
 
-### 7. Cnotact: 
+### 7. Contact: 
 Use FormCarry API to collect user queries and send to admin's email.
 ![Access](img/contact.png)
 
